@@ -4,17 +4,20 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 import pickle
 
-# Load dataset from Hugging Face
-dataset = load_dataset("jacob-huggingface/resume-screening")
+# Load dataset (NEW WORKING ONE)
+dataset = load_dataset("tanishqmahajan/resume-dataset")
 
 # Convert to pandas
 df = pd.DataFrame(dataset['train'])
 
-# Features and labels
-X = df['Resume']
-y = df['Category']
+# Check column names
+print(df.columns)
 
-# Convert text to numerical data
+# Adjust columns if needed
+X = df['Resume']   # text
+y = df['Category'] # labels
+
+# Convert text to vectors
 vectorizer = TfidfVectorizer(stop_words='english')
 X_vec = vectorizer.fit_transform(X)
 
@@ -26,4 +29,4 @@ model.fit(X_vec, y)
 pickle.dump(model, open("model.pkl", "wb"))
 pickle.dump(vectorizer, open("vectorizer.pkl", "wb"))
 
-print("Model trained and saved!")
+print("Model trained successfully!")
