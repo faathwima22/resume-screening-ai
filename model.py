@@ -5,7 +5,7 @@ from sklearn.linear_model import LogisticRegression
 import pickle
 
 # Load dataset (NEW WORKING ONE)
-dataset = load_dataset("tanishqmahajan/resume-dataset")
+dataset = load_dataset("AzharAli05/resume-dataset")
 
 # Convert to pandas
 df = pd.DataFrame(dataset['train'])
